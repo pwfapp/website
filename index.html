@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proud Man Plan — do something your 12-year-old self would be proud of</title>
+<meta name="description" content="For men in their 50s who've drifted. Pick one mission the boy you were would care about, take one step a week, and build a trail of evidence he'd be proud of. Coming soon to iPhone.">
+<meta property="og:title" content="Proud Man Plan">
+<meta property="og:description" content="One mission. One step a week. A letter to the boy you were every time you follow through.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://proudmanplan.com">
+<meta property="og:image" content="https://proudmanplan.com/logo.png">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1B3F;
+    --navy-soft: #1B2A55;
+    --orange: #E04A2E;
+    --orange-dark: #B93A22;
+    --gold: #C9A227;
+    --gold-soft: #EFDFA7;
+    --cream: #F6EFDF;
+    --cream-border: #E8DCC2;
+    --paper: #FBF9F4;
+    --ink: #24272E;
+    --muted: #5C6270;
+    --faint: #9AA0AC;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* faint paper grain */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.42 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  main, header.site, footer.site { position: relative; z-index: 1; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  .logo-img { border-radius: 22.5%; display: block; }
+
+  /* ---------- sunburst (the mission-complete celebration, on the web) ---------- */
+  @keyframes sunspin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .burst {
+    position: absolute; border-radius: 50%;
+    background: repeating-conic-gradient(var(--gold-soft) 0deg 6.5deg, transparent 6.5deg 15deg);
+    -webkit-mask-image: radial-gradient(circle, transparent 30%, #000 32%, #000 58%, transparent 66%);
+    mask-image: radial-gradient(circle, transparent 30%, #000 32%, #000 58%, transparent 66%);
+    animation: sunspin 18s linear infinite;
+    pointer-events: none;
+  }
+
+  /* ---------- nav ---------- */
+  header.site {
+    position: sticky; top: 0;
+    background: rgba(251, 249, 244, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(15, 27, 63, 0.07);
+    z-index: 50;
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; max-width: 1080px; margin: 0 auto;
+  }
+  .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brand .logo-img { width: 34px; height: 34px; }
+  .wordmark {
+    font-family: var(--serif); font-weight: 700; font-size: 20px;
+    color: var(--navy); letter-spacing: -0.01em;
+  }
+  .wordmark span { color: var(--orange); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 500; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy); color: #fff !important; padding: 9px 18px;
+    border-radius: 999px; font-size: 14px !important; font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--navy-soft); }
+  @media (max-width: 680px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 84px 0 48px; overflow: hidden; position: relative; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 48px; align-items: center;
+  }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 60px; } }
+  .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-dark); margin-bottom: 20px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 24px;
+  }
+  h1 em {
+    font-style: normal; color: var(--orange);
+    background-image: linear-gradient(transparent 78%, var(--gold-soft) 78%);
+  }
+  .hero-sub {
+    font-size: 19px; color: var(--muted); max-width: 34em; margin-bottom: 32px; line-height: 1.65;
+  }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--navy); color: #fff; text-decoration: none;
+    padding: 15px 26px; border-radius: 12px; font-weight: 600; font-size: 16px;
+    box-shadow: 0 8px 24px rgba(15, 27, 63, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(15, 27, 63, 0.28); }
+  .btn-primary svg { width: 20px; height: 20px; }
+  .btn-ghost {
+    color: var(--orange-dark); text-decoration: none; font-weight: 600; font-size: 16px; padding: 15px 6px;
+  }
+  .btn-ghost:hover { text-decoration: underline; }
+  .hero-note { margin-top: 18px; font-size: 14px; color: var(--faint); }
+
+  /* big ambient rays behind the phone */
+  .hero-rays {
+    position: absolute; width: 780px; height: 780px; border-radius: 50%;
+    right: -180px; top: 50%; margin-top: -390px;
+    background: repeating-conic-gradient(rgba(224, 74, 46, 0.05) 0deg 5deg, transparent 5deg 14deg);
+    -webkit-mask-image: radial-gradient(circle, #000 0%, #000 55%, transparent 72%);
+    mask-image: radial-gradient(circle, #000 0%, #000 55%, transparent 72%);
+    animation: sunspin 90s linear infinite;
+    pointer-events: none;
+  }
+  @media (max-width: 860px) { .hero-rays { right: 50%; margin-right: -390px; top: auto; bottom: -240px; margin-top: 0; } }
+
+  /* ---------- phone + carousel ---------- */
+  .phone-col { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .phone {
+    width: 312px; border-radius: 44px; background: var(--navy);
+    padding: 13px; position: relative;
+    box-shadow: 0 40px 80px rgba(15, 27, 63, 0.28), 0 4px 12px rgba(15, 27, 63, 0.18);
+    transform: rotate(2deg);
+    transition: transform 0.4s ease;
+  }
+  .phone:hover { transform: rotate(0deg); }
+  @media (max-width: 860px) { .phone { transform: rotate(0deg); } }
+  .phone-screen {
+    background: var(--paper); border-radius: 32px; overflow: hidden; position: relative;
+  }
+  .phone-notch {
+    width: 96px; height: 20px; background: var(--navy); border-radius: 0 0 14px 14px;
+    margin: 0 auto; position: relative; z-index: 5;
+  }
+  .screens { position: relative; height: 486px; }
+  .screen {
+    position: absolute; inset: 0; padding: 18px 18px 22px;
+    opacity: 0; transition: opacity 0.7s ease;
+    display: flex; flex-direction: column;
+  }
+  .screen.active { opacity: 1; }
+  .screen-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--orange-dark); margin-bottom: 10px;
+  }
+
+  /* mini app components, faithful to the real screens */
+  .mini-hello { font-size: 21px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .mini-trail { font-size: 12.5px; font-weight: 600; color: var(--orange-dark); margin-bottom: 12px; }
+  .mini-card {
+    background: #fff; border: 1px solid rgba(15, 27, 63, 0.09); border-radius: 10px;
+    padding: 12px 13px; margin-bottom: 10px;
+  }
+  .mini-card .lab {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .mini-card .ttl { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  .mini-card .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .mini-card .act { font-size: 12px; color: var(--orange-dark); font-weight: 600; margin-top: 7px; }
+  .mini-btn {
+    background: var(--navy); color: #fff; font-size: 13px; font-weight: 600;
+    text-align: center; border-radius: 10px; padding: 12px; margin-top: auto;
+  }
+  .letter-paper {
+    background: var(--cream); border: 1px solid var(--cream-border); border-radius: 12px;
+    padding: 17px 16px; flex: 1;
+  }
+  .letter-paper p {
+    font-family: var(--serif); font-size: 13.5px; line-height: 1.7; color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .letter-paper p:last-child { margin-bottom: 0; }
+  .mini-stats { display: flex; gap: 10px; margin-bottom: 10px; }
+  .mini-stat {
+    flex: 1; background: var(--cream); border: 1px solid var(--cream-border);
+    border-radius: 10px; text-align: center; padding: 14px 6px 11px;
+    position: relative; overflow: hidden;
+  }
+  .mini-stat::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange);
+  }
+  .mini-stat .n { font-size: 30px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+  .mini-stat .l { font-size: 10px; color: var(--ink); font-weight: 500; }
+  .celebrate-screen { align-items: center; text-align: center; justify-content: center; gap: 4px; }
+  .celebrate-stage { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+  .celebrate-stage .burst { width: 200px; height: 200px; }
+  .celebrate-stage .logo-img { width: 84px; height: 84px; position: relative; z-index: 2; box-shadow: 0 6px 18px rgba(15,27,63,0.18); }
+  .celebrate-title {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: var(--orange);
+  }
+  .celebrate-mission { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--navy); }
+  .celebrate-meta { font-size: 12px; color: var(--muted); }
+
+  .screen-dots { display: flex; gap: 8px; justify-content: center; margin-top: 20px; }
+  .screen-dots button {
+    width: 9px; height: 9px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(15, 27, 63, 0.18); padding: 0; transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .screen-dots button.active { background: var(--orange); transform: scale(1.25); }
+  .screen-caption { margin-top: 10px; font-size: 13px; color: var(--faint); min-height: 20px; text-align: center; }
+
+  /* ---------- shared section styles ---------- */
+  section { padding: 84px 0; }
+  .kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--orange-dark); margin-bottom: 14px;
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4.2vw, 42px);
+    line-height: 1.12; color: var(--navy); letter-spacing: -0.015em; margin-bottom: 20px;
+    max-width: 18em;
+  }
+  .lede { font-size: 18px; color: var(--muted); max-width: 38em; line-height: 1.7; }
+  .lede + .lede { margin-top: 16px; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  /* stones divider */
+  .stones { display: flex; gap: 10px; justify-content: center; padding: 6px 0; }
+  .stones i {
+    width: 10px; height: 10px; border-radius: 50% 45% 55% 50%; background: var(--gold);
+    opacity: 0.55; display: block;
+  }
+  .stones i:nth-child(odd) { transform: translateY(3px) scale(0.85); }
+
+  /* ---------- how it works ---------- */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 48px; }
+  @media (max-width: 980px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
+  .step-card {
+    background: #fff; border: 1px solid rgba(15, 27, 63, 0.08); border-radius: 16px;
+    padding: 26px 22px 28px; position: relative; overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .step-card:hover { transform: translateY(-5px); box-shadow: 0 18px 36px rgba(15, 27, 63, 0.1); }
+  .step-card::after {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--orange);
+  }
+  .step-num {
+    font-family: var(--serif); font-size: 44px; font-weight: 700; color: var(--gold);
+    line-height: 1; margin-bottom: 14px;
+  }
+  .step-card h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .step-card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  /* stagger the card reveals */
+  .steps-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
+  .steps-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
+  .steps-grid .reveal:nth-child(4) { transition-delay: 0.3s; }
+
+  /* ---------- letter band (navy) ---------- */
+  .letter-band { background: var(--navy); color: #fff; position: relative; overflow: hidden; }
+  .letter-band .kicker { color: var(--gold); }
+  .letter-band h2 { color: #fff; }
+  .letter-band .lede { color: #B9C0D4; }
+  .band-rays {
+    position: absolute; width: 640px; height: 640px; border-radius: 50%;
+    left: -220px; bottom: -320px;
+    background: repeating-conic-gradient(rgba(201, 162, 39, 0.07) 0deg 5deg, transparent 5deg 14deg);
+    -webkit-mask-image: radial-gradient(circle, #000 0%, #000 55%, transparent 72%);
+    mask-image: radial-gradient(circle, #000 0%, #000 55%, transparent 72%);
+    animation: sunspin 110s linear infinite;
+    pointer-events: none;
+  }
+  .band-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    position: relative;
+  }
+  @media (max-width: 860px) { .band-grid { grid-template-columns: 1fr; } }
+  .big-letter {
+    background: var(--cream); border-radius: 16px; padding: 34px 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    transform: rotate(-1.2deg);
+    transition: transform 0.35s ease;
+  }
+  .big-letter:hover { transform: rotate(0deg); }
+  @media (max-width: 860px) { .big-letter { transform: none; } }
+  .big-letter p {
+    font-family: var(--serif); font-size: 16.5px; line-height: 1.8; color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .big-letter p:last-child { margin-bottom: 0; }
+  .ps-line { margin-top: 26px; font-size: 15px; color: var(--gold-soft); font-style: italic; }
+
+  /* ---------- coach ---------- */
+  .coach-points { margin-top: 36px; display: grid; gap: 0; max-width: 44em; }
+  .coach-point {
+    padding: 22px 0; border-top: 1px solid rgba(15, 27, 63, 0.1);
+    display: grid; grid-template-columns: 200px 1fr; gap: 20px;
+  }
+  .coach-point:last-child { border-bottom: 1px solid rgba(15, 27, 63, 0.1); }
+  @media (max-width: 640px) { .coach-point { grid-template-columns: 1fr; gap: 6px; } }
+  .coach-point b { font-size: 16px; color: var(--navy); font-weight: 700; }
+  .coach-point p { font-size: 15.5px; color: var(--muted); }
+
+  /* ---------- pricing ---------- */
+  .price-card {
+    margin-top: 44px; background: #fff; border: 1px solid rgba(15, 27, 63, 0.09);
+    border-radius: 20px; padding: 40px 36px; max-width: 560px;
+    box-shadow: 0 16px 40px rgba(15, 27, 63, 0.08);
+  }
+  .price-free {
+    font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--navy); margin-bottom: 6px;
+  }
+  .price-free em { font-style: normal; color: var(--orange); }
+  .price-then { font-size: 15px; color: var(--muted); margin-bottom: 22px; }
+  .price-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .price-pill {
+    flex: 1; min-width: 180px; border: 1.5px solid var(--cream-border); border-radius: 14px;
+    padding: 18px 20px; background: var(--paper); position: relative;
+  }
+  .price-pill.best { border-color: var(--gold); }
+  .price-pill .badge {
+    position: absolute; top: -11px; right: 14px; background: var(--gold); color: var(--navy);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 10px;
+    border-radius: 999px; text-transform: uppercase;
+  }
+  .price-pill .amount { font-size: 26px; font-weight: 700; color: var(--navy); }
+  .price-pill .amount small { font-size: 14px; font-weight: 500; color: var(--muted); }
+  .price-pill .per { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .price-notes { margin-top: 22px; font-size: 14px; color: var(--faint); line-height: 1.7; }
+
+  /* ---------- faq ---------- */
+  .faq-list { margin-top: 40px; max-width: 44em; }
+  details { border-top: 1px solid rgba(15, 27, 63, 0.1); padding: 4px 0; }
+  details:last-child { border-bottom: 1px solid rgba(15, 27, 63, 0.1); }
+  summary {
+    cursor: pointer; list-style: none; display: flex; justify-content: space-between;
+    align-items: center; gap: 16px; padding: 18px 0;
+    font-size: 17px; font-weight: 600; color: var(--navy);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+"; font-family: var(--serif); font-size: 24px; color: var(--orange);
+    transition: transform 0.2s ease; line-height: 1;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 0 20px; font-size: 15.5px; color: var(--muted); max-width: 40em; }
+
+  /* ---------- final cta ---------- */
+  .final { text-align: center; padding: 90px 0 110px; position: relative; overflow: hidden; }
+  .final-stage {
+    position: relative; width: 260px; height: 260px; margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .final-stage .burst { width: 260px; height: 260px; animation-duration: 22s; }
+  .final-stage .logo-img {
+    width: 104px; height: 104px; position: relative; z-index: 2;
+    box-shadow: 0 14px 34px rgba(15, 27, 63, 0.22);
+  }
+  .final h2 { margin: 0 auto 18px; }
+  .final .lede { margin: 0 auto 34px; }
+  .final .cta-row { justify-content: center; }
+
+  /* ---------- footer ---------- */
+  footer.site { background: var(--navy); color: #8E97B3; padding: 44px 0; font-size: 14px; }
+  .foot-grid { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+  footer.site a { color: #C4CBE0; text-decoration: none; }
+  footer.site a:hover { color: #fff; text-decoration: underline; }
+  .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot-brand { display: flex; align-items: center; gap: 10px; }
+  .foot-brand .logo-img { width: 28px; height: 28px; }
+  .foot-mark { font-family: var(--serif); font-weight: 700; color: #fff; font-size: 16px; }
+  .foot-mark span { color: var(--orange); }
+
+  /* ---------- reveal animation (JS-gated so no-JS stays visible) ---------- */
+  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .js .reveal.on { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .burst, .hero-rays, .band-rays { animation: none !important; }
+    .screen { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a class="brand" href="#top" aria-label="Proud Man Plan home">
+      <img class="logo-img" src="logo.png" alt="" width="34" height="34">
+      <span class="wordmark">Proud<span>Man</span>Plan</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#letters">The letters</a>
+      <a href="#pricing">Pricing</a>
+      <a class="nav-cta" href="#pricing">Coming soon to iPhone</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-rays" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">For men who've drifted</span>
+        <h1>Do something your <em>12-year-old self</em> would be proud of.</h1>
+        <p class="hero-sub">
+          You've worked. Raised the kids. Done the sensible things. Somewhere in
+          all that, the stuff that used to light you up went quiet.
+          Proud Man Plan helps you pick one mission the boy you were would
+          actually care about, and finish it one small step a week.
+        </p>
+        <div class="cta-row">
+          <a class="btn-primary" href="#pricing">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z"/></svg>
+            Coming soon to iPhone
+          </a>
+          <a class="btn-ghost" href="#letters">Read a sample letter ↓</a>
+        </div>
+        <p class="hero-note">First mission free. No streaks, no badges, no shame.</p>
+      </div>
+
+      <div class="phone-col reveal">
+        <div class="phone" id="phone">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="screens" id="screens">
+
+              <!-- 1: HOME -->
+              <div class="screen active" data-caption="Your week, on one screen">
+                <div class="screen-label">Home</div>
+                <div class="mini-hello">Hello, Dave</div>
+                <div class="mini-trail">4 steps laid since 12 May &nbsp;›</div>
+                <div class="mini-card">
+                  <div class="lab">Your mission</div>
+                  <div class="ttl">Learn to sail solo</div>
+                  <div class="meta">Done when: I've sailed the lake single-handed</div>
+                </div>
+                <div class="mini-card">
+                  <div class="lab">This week's step</div>
+                  <div class="ttl">Book a first lesson at the boatyard</div>
+                  <div class="meta">By: Tuesday 14 July</div>
+                </div>
+                <div class="mini-btn">Check in on this step</div>
+              </div>
+
+              <!-- 2: LETTER -->
+              <div class="screen" data-caption="Every finished step earns a letter">
+                <div class="screen-label">Step complete — your letter</div>
+                <div class="letter-paper">
+                  <p>Dear Young Dave,</p>
+                  <p>This morning I phoned the boatyard and booked the first
+                  sailing lesson. Took me four minutes. I'd been putting it
+                  off for eleven years.</p>
+                  <p>You always said we'd learn one day. Turns out "one day"
+                  needed a Tuesday attached to it.</p>
+                  <p>Yours, you — but a little bit older</p>
+                </div>
+                <div class="mini-btn" style="margin-top: 14px;">Pick next week's step</div>
+              </div>
+
+              <!-- 3: RECORD -->
+              <div class="screen" data-caption="The record builds, week by week">
+                <div class="screen-label">Your record</div>
+                <div class="mini-stats">
+                  <div class="mini-stat"><div class="n">3</div><div class="l">missions completed</div></div>
+                  <div class="mini-stat"><div class="n">17</div><div class="l">steps done</div></div>
+                </div>
+                <div class="mini-card">
+                  <div class="lab">Missions completed</div>
+                  <div class="ttl">Run the Coast 10k</div>
+                  <div class="meta">Completed 14 Jun 2026</div>
+                  <div class="act">Tap to read your letter — and the reply</div>
+                </div>
+                <div class="mini-card">
+                  <div class="ttl" style="font-size: 14px;">Play three songs at the family Christmas</div>
+                  <div class="meta">Completed 4 Jan 2026</div>
+                </div>
+              </div>
+
+              <!-- 4: MISSION COMPLETE -->
+              <div class="screen celebrate-screen" data-caption="Finish a mission. It's an occasion.">
+                <div class="celebrate-stage">
+                  <div class="burst" aria-hidden="true"></div>
+                  <img class="logo-img" src="logo.png" alt="" width="84" height="84">
+                </div>
+                <div class="celebrate-title">MISSION COMPLETE!</div>
+                <div class="celebrate-mission">Learn to sail solo</div>
+                <div class="celebrate-meta">6 steps done along the way</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="screen-dots" id="dots" role="tablist" aria-label="App screens"></div>
+        <div class="screen-caption" id="caption">Your week, on one screen</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stones" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+  <!-- DRIFT -->
+  <section>
+    <div class="wrap reveal">
+      <p class="kicker">The quiet drift</p>
+      <h2>Nobody decides to drift. It just happens, one sensible year at a time.</h2>
+      <p class="lede">
+        A promotion here, a school run there, a decade of doing the right thing
+        by everyone. Then one evening you notice the telly is on again and
+        there's nothing in your week you're actually looking forward to.
+      </p>
+      <p class="lede">
+        It isn't a crisis. That's the problem — a crisis would get your
+        attention. This is quieter than that, and it doesn't fix itself.
+        <strong>What fixes it is one real thing, started and finished.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" style="padding-top: 40px;">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">How it works</p>
+        <h2>One mission. One step a week. That's the whole system.</h2>
+        <p class="lede">
+          Most goal apps drown you in tracking. This one goes the other way:
+          you're only ever looking at one thing.
+        </p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-num">1</div>
+          <h3>Pick a mission</h3>
+          <p>A coach conversation helps you land on the one thing the boy you
+          were would have been excited about — with a finish line you can
+          actually see.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">2</div>
+          <h3>Commit to one step</h3>
+          <p>Not a plan. A single, small, doable action with a day attached.
+          Small enough that you'll definitely do it. That's the point.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">3</div>
+          <h3>Check in honestly</h3>
+          <p>Did it, or didn't. Both count. A missed week gets a smaller step,
+          not a lecture. The coach remembers what tends to stop you and sizes
+          the next one accordingly.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">4</div>
+          <h3>Write to the boy</h3>
+          <p>Every step you finish earns a letter — from you, now, to you at
+          twelve. Week by week, that becomes a record he'd be proud of.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTERS (navy band) -->
+  <section class="letter-band" id="letters">
+    <div class="band-rays" aria-hidden="true"></div>
+    <div class="wrap band-grid">
+      <div class="reveal">
+        <p class="kicker">The letters</p>
+        <h2>The kid is the audience. Not your boss. Not your feed.</h2>
+        <p class="lede">
+          Every finished step ends with a letter to your 12-year-old self about
+          what you just did and why it matters. It sounds odd until you read
+          your first one. Then it's the reason you open the app.
+        </p>
+        <p class="ps-line">And when you complete a whole mission, your
+        12-year-old self writes back. A couple of days later, there's a letter
+        from him waiting in the app.</p>
+      </div>
+      <div class="big-letter reveal" aria-label="Sample letter">
+        <p>Dear Young Mick,</p>
+        <p>Tonight I stood in the village hall and played three songs on the
+        guitar in front of forty people. My hands shook on the first one.
+        By the third, they didn't.</p>
+        <p>You wanted this the moment you saw that red Stratocaster in the
+        catalogue. It took me forty years and six Tuesdays of practice to
+        get here, and the last part was easier than the waiting.</p>
+        <p>The perfectionism that usually stops us — it turned up, as it does.
+        I played anyway. That's the bit I think you'd like best.</p>
+        <p>Yours, you — but a little bit older</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACH -->
+  <section>
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">The coach</p>
+        <h2>A coach, not a cheerleader.</h2>
+        <p class="lede">
+          The AI coach asks one good question at a time, remembers your
+          answers, and never tells you you're crushing it.
+        </p>
+      </div>
+      <div class="coach-points reveal">
+        <div class="coach-point">
+          <b>It knows what stops you</b>
+          <p>Right at the start it asks what usually gets in the way —
+          perfectionism, time, losing steam — and it shapes every week's step
+          around beating that, quietly.</p>
+        </div>
+        <div class="coach-point">
+          <b>It sizes by evidence</b>
+          <p>Missed a week? Next step gets smaller. Four in a row? It'll let
+          you stretch. It works off what actually happened, not what you
+          promised.</p>
+        </div>
+        <div class="coach-point">
+          <b>It never does shame</b>
+          <p>No streaks that reset. No guilt notifications. A missed step is
+          information, not failure — the app's job is to make next week's step
+          impossible to miss.</p>
+        </div>
+        <div class="coach-point">
+          <b>It keeps you to one thing</b>
+          <p>One active mission, one active step, ever. The constraint is the
+          product. You will not be building a task list.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stones" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+  <!-- PRICING -->
+  <section id="pricing" style="padding-top: 48px;">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">Pricing</p>
+        <h2>Your first mission is free. Finish it, then decide.</h2>
+        <p class="lede">
+          Do a whole mission on us — steps, coach, letters, the lot. If you
+          want the next one, it's less than a pint a month.
+        </p>
+      </div>
+      <div class="price-card reveal">
+        <p class="price-free">First mission <em>free</em></p>
+        <p class="price-then">Then, with a 7-day free trial:</p>
+        <div class="price-row">
+          <div class="price-pill">
+            <div class="amount">£4.99 <small>/ month</small></div>
+            <div class="per">Cancel any time</div>
+          </div>
+          <div class="price-pill best">
+            <span class="badge">Save 33%</span>
+            <div class="amount">£39.99 <small>/ year</small></div>
+            <div class="per">Works out £3.33 a month</div>
+          </div>
+        </div>
+        <p class="price-notes">
+          Billed through your Apple ID. Cancel in your Apple settings any time
+          before the trial ends and you won't be charged. No lifetime deals, no
+          upsells, no "premium plus".
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding-top: 24px;">
+    <div class="wrap reveal">
+      <p class="kicker">Fair questions</p>
+      <h2>Things men ask before they start.</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Is this therapy?</summary>
+          <p>No. It's a structured way to pick one meaningful thing and follow
+          through on it, with an AI coach keeping you honest. It doesn't
+          diagnose, treat, or replace professional help — and it says so
+          plainly in the terms.</p>
+        </details>
+        <details>
+          <summary>I don't know what my mission would even be.</summary>
+          <p>That's the most common starting point, and it's what the first
+          coach conversation is for. It asks about what lit you up before life
+          got busy, and it won't let you pick an adult chore dressed up as
+          ambition.</p>
+        </details>
+        <details>
+          <summary>What happens to what I tell it?</summary>
+          <p>Your conversations aren't stored, only the structured results
+          (your mission, your steps, your letters). Data lives in the EU, and
+          nothing you write is used to train AI models. The full detail is in
+          the <a href="/legal/privacy/">privacy policy</a>.</p>
+        </details>
+        <details>
+          <summary>Android?</summary>
+          <p>iPhone first, Android after launch. If you're on Android, the
+          missions will still be there when we get to you.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap reveal">
+      <div class="final-stage">
+        <div class="burst" aria-hidden="true"></div>
+        <img class="logo-img" src="logo.png" alt="Proud Man Plan logo" width="104" height="104">
+      </div>
+      <h2>The kid's been waiting long enough.</h2>
+      <p class="lede">One mission. One step a week. Coming soon to iPhone.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#top">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z"/></svg>
+          Coming soon to iPhone
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img class="logo-img" src="logo.png" alt="" width="28" height="28">
+      <span class="foot-mark">Proud<span>Man</span>Plan</span>
+    </div>
+    <div class="foot-links">
+      <a href="/legal/terms/">Terms of Service</a>
+      <a href="/legal/privacy/">Privacy Policy</a>
+      <a href="mailto:petewindy@gmail.com">Contact</a>
+    </div>
+    <div>© 2026 Peter Windridge-France</div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+
+    // ----- scroll reveal -----
+    var els = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (el) { io.observe(el); });
+    } else {
+      els.forEach(function (el) { el.classList.add('on'); });
+    }
+
+    // ----- phone screen carousel -----
+    var screens = Array.prototype.slice.call(document.querySelectorAll('#screens .screen'));
+    var dotsWrap = document.getElementById('dots');
+    var caption = document.getElementById('caption');
+    var phone = document.getElementById('phone');
+    var current = 0;
+    var timer = null;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    screens.forEach(function (_, i) {
+      var b = document.createElement('button');
+      b.setAttribute('aria-label', 'Show app screen ' + (i + 1));
+      if (i === 0) b.classList.add('active');
+      b.addEventListener('click', function () { show(i); restart(); });
+      dotsWrap.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+
+    function show(i) {
+      current = i;
+      screens.forEach(function (s, j) { s.classList.toggle('active', j === i); });
+      dots.forEach(function (d, j) { d.classList.toggle('active', j === i); });
+      caption.textContent = screens[i].getAttribute('data-caption') || '';
+    }
+    function next() { show((current + 1) % screens.length); }
+    function restart() {
+      if (reduced) return;
+      if (timer) clearInterval(timer);
+      timer = setInterval(next, 4600);
+    }
+
+    // Auto-advance unless the visitor prefers reduced motion. Pause while
+    // hovered so people can actually read a screen they're looking at.
+    restart();
+    if (phone && !reduced) {
+      phone.addEventListener('mouseenter', function () { if (timer) clearInterval(timer); });
+      phone.addEventListener('mouseleave', restart);
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { if (timer) clearInterval(timer); }
+      else restart();
+    });
+  })();
+</script>
+
+</body>
+</html>
